@@ -2,8 +2,9 @@ package luca.dev.api.controller;
 
 import jakarta.validation.Valid;
 import luca.dev.api.medic.DataCreateMedic;
-import luca.dev.api.medic.Medic;
-import luca.dev.api.medic.MedicRepository;
+import luca.dev.api.patients.DataCreatePatient;
+import luca.dev.api.patients.PatientRepository;
+import luca.dev.api.patients.Patients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,17 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("medics")
-public class MedicController {
-
+@RequestMapping("patients")
+public class PatientController {
     @Autowired
-    private MedicRepository repository;
-
-
+    private PatientRepository repository;
 
     @PostMapping
     @Transactional
-    public void createMedic(@RequestBody @Valid DataCreateMedic body){
-        repository.save(new Medic(body));
+    public void cadastrar(@RequestBody @Valid DataCreatePatient body) {
+        repository.save(new Patients(body));
     }
 }
